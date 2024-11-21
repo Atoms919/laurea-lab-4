@@ -14,7 +14,7 @@ const RootStack = createNativeStackNavigator<StackParamList>({
     WelcomeScreen: { screen: WelcomeScreen, options: { title: "Welcome" } },
     LogInScreen: { screen: LogInScreen, options: { title: "Login Page" } },
     ProfileScreen: { screen: ProfileScreen, options: { title: "Profile" } },
-    ContactScreen: { screen: ContactScreen, options: { title: "Contact" } },
+    ContactScreen: { screen: ContactScreen, options: { title: "Contact us" } },
   },
 });
 

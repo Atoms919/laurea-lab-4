@@ -4,10 +4,16 @@ import React from "react";
 const UserProfileButtons = () => {
   return (
     <View style={styles.profileButtons}>
-      <Pressable style={styles.button}>
+      <Pressable
+        style={styles.button}
+        onPress={() => alert("Editing profile...")}
+      >
         <Text style={styles.buttonText}>Edit profile</Text>
       </Pressable>
-      <Pressable style={styles.button}>
+      <Pressable
+        style={styles.button}
+        onPress={() => alert("Sharing profile...")}
+      >
         <Text style={styles.buttonText}>Share profile</Text>
       </Pressable>
     </View>
