@@ -11,6 +11,7 @@ export type StackParamList = {
   WelcomeScreen: undefined;
   ProfileScreen: undefined;
   ContactScreen: undefined;
+  UserFeedScreen: undefined;
 };
 
 export type LoginScreenProps = NativeStackScreenProps<

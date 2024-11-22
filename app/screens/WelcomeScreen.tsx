@@ -1,14 +1,23 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackActions } from "@react-navigation/native";
 import { Button } from "@react-navigation/elements";
+import { useEffect } from "react";
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.dispatch(StackActions.replace("LogInScreen"));
+    }, 1000 * 300);
+
+    return () => clearTimeout(timer);
+  }, [navigation]);
+
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>WelcomeScreen</Text>
+    <View style={styles.container}>
+      <Text style={styles.welcomeText}>Welcome to Glimpse!</Text>
       <Button onPress={() => navigation.navigate("ContactScreen")}>
         To Contact Screen
       </Button>
@@ -18,9 +27,23 @@ const WelcomeScreen = () => {
       <Button onPress={() => navigation.navigate("LogInScreen")}>
         To Login
       </Button>
-      <Button onPress={() => navigation.goBack()}>Go back</Button>
+      <Button onPress={() => navigation.navigate("UserFeedScreen")}>
+        To User Feed
+      </Button>
     </View>
   );
 };
 
 export default WelcomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  welcomeText: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+});
