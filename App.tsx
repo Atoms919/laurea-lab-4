@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import WelcomeScreen from './WelcomeScreen';
-import LoginPage from './LoginPage';
-import ContactPage from './ContactPage';
-import { enableScreens } from 'react-native-screens';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { createStaticNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ContactScreen from "./app/screens/ContactScreen";
+import LogInScreen from "./app/screens/LogInScreen";
+import ProfileScreen from "./app/screens/ProfileScreen";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import type { StackParamList } from "./app/types";
 
-enableScreens();
-const Stack = createStackNavigator();
+const RootStack = createNativeStackNavigator<StackParamList>({
+  initialRouteName: "WelcomeScreen",
+  screens: {
+    WelcomeScreen: { screen: WelcomeScreen, options: { title: "Welcome" } },
+    LogInScreen: { screen: LogInScreen, options: { title: "Login Page" } },
+    ProfileScreen: { screen: ProfileScreen, options: { title: "Profile" } },
+    ContactScreen: { screen: ContactScreen, options: { title: "Contact us" } },
+  },
+});
 
-function AppNavigator() {
+const Navigation = createStaticNavigation(RootStack);
 
-    return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Welcome">
-                <Stack.Screen name="Welcome" component={WelcomeScreen} />
-                <Stack.Screen name="Login" component={LoginPage} />
-                <Stack.Screen name="Contact" component={ContactPage} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+export default function App() {
+  return <Navigation />;
 }
 
-export default AppNavigator;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
