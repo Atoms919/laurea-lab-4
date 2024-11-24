@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions, ScrollView, FlatList } from "react-native";
 import UserPost from "./UserPost";
 import type { Post } from "../types";
+import StoriesHeader from "./StoriesHeader";
 import React from "react";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -125,6 +126,7 @@ const UserFeed = () => {
         keyExtractor={(post) => post.id.toString()}
         numColumns={1}
         scrollEnabled={false}
+        ListHeaderComponent={StoriesHeader}
       />
     </ScrollView>
   );
