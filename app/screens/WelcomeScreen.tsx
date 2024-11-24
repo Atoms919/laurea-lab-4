@@ -7,13 +7,13 @@ import { useEffect } from "react";
 const WelcomeScreen = () => {
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.dispatch(StackActions.replace("LogInScreen"));
-    }, 1000 * 300);
+  //   useEffect(() => {
+  //     const timer = setTimeout(() => {
+  //       navigation.dispatch(StackActions.replace("LogInScreen"));
+  //     }, 1000 * 300);
 
-    return () => clearTimeout(timer);
-  }, [navigation]);
+  //     return () => clearTimeout(timer);
+  //   }, [navigation]);
 
   return (
     <View style={styles.container}>

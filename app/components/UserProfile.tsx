@@ -6,6 +6,7 @@ import {
   FlatList,
   ScrollView,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import UserStories from "./UserStories";
@@ -13,6 +14,10 @@ import UserInfo from "./UserInfo";
 import UserProfileButtons from "./UserProfileButtons";
 import ProfileImageControls from "./ProfileImageControls";
 import { useState } from "react";
+
+const windowWidth = Dimensions.get("window").width;
+
+const COMPONENT_WIDTH = windowWidth > 520 ? 520 : windowWidth;
 
 const images = [
   { id: 1, uri: "https://via.placeholder.com/150" },
@@ -24,18 +29,18 @@ const images = [
   { id: 7, uri: "https://via.placeholder.com/150" },
 ];
 
+const renderItem = ({ item }: { item: { id: number; uri: string } }) => {
+  return (
+    <View>
+      <Pressable>
+        <Image style={styles.singleImage} source={{ uri: item.uri }} />
+      </Pressable>
+    </View>
+  );
+};
+
 const UserProfile = () => {
   const [selectedImageControl, setSelectedImageControl] = useState(1);
-
-  const renderItem = ({ item }: { item: { id: number; uri: string } }) => {
-    return (
-      <View>
-        <Pressable>
-          <Image style={styles.singleImage} source={{ uri: item.uri }} />
-        </Pressable>
-      </View>
-    );
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -62,7 +67,7 @@ const UserProfile = () => {
           />
         )}
         {selectedImageControl === 2 && (
-          <View>
+          <View style={styles.taggedMode}>
             <AntDesign
               name="user"
               size={100}
@@ -83,6 +88,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    width: COMPONENT_WIDTH,
   },
   text: {
     marginTop: 10,
@@ -96,9 +102,15 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   singleImage: {
-    height: 150,
-    width: 150,
+    height: COMPONENT_WIDTH / 3,
+    width: COMPONENT_WIDTH / 3,
     borderColor: "black",
     margin: 1,
+  },
+  taggedMode: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
   },
 });

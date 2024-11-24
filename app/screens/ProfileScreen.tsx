@@ -8,7 +8,12 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View
+      style={{
+        flex: 1,
+        marginHorizontal: "auto",
+      }}
+    >
       <UserProfile />
     </View>
   );
