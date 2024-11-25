@@ -4,6 +4,7 @@ import { createStaticNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ContactScreen from "./app/screens/ContactScreen";
 import LogInScreen from "./app/screens/LogInScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
 import ProfileScreen from "./app/screens/ProfileScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import UserFeedScreen from "./app/screens/UserFeedScreen";
@@ -14,6 +15,7 @@ const RootStack = createNativeStackNavigator<StackParamList>({
   screens: {
     WelcomeScreen: { screen: WelcomeScreen, options: { title: "Welcome" } },
     LogInScreen: { screen: LogInScreen, options: { title: "Login Page" } },
+    RegisterScreen: { screen: RegisterScreen, options: { title: "Register Page"}},
     ProfileScreen: { screen: ProfileScreen, options: { title: "Profile" } },
     ContactScreen: { screen: ContactScreen, options: { title: "Contact us" } },
     UserFeedScreen: { screen: UserFeedScreen, options: { title: "User Feed" } },

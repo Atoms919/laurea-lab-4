@@ -27,6 +27,9 @@ const WelcomeScreen = () => {
       <Button onPress={() => navigation.navigate("LogInScreen")}>
         To Login
       </Button>
+      <Button onPress={() => navigation.navigate("RegisterScreen")}>
+        To Register
+      </Button>
       <Button onPress={() => navigation.navigate("UserFeedScreen")}>
         To User Feed
       </Button>
