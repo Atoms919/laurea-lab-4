@@ -4,7 +4,7 @@ import UserFeed from "../components/UserFeed";
 
 const UserFeedScreen = () => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, marginHorizontal: "auto" }}>
       <UserFeed />
     </View>
   );
