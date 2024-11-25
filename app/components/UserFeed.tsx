@@ -11,7 +11,7 @@ const mockPosts = [
     id: 1,
     username: "janestagram",
     profilePic: "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
-    postImage: "https://wallpapercave.com/wp/wp4375648.jpg",
+    postImage: "cld-sample-4",
     likes: 30,
     comments: 20,
     shares: 5,
@@ -21,7 +21,7 @@ const mockPosts = [
     id: 2,
     username: "john_doe",
     profilePic: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
-    postImage: "https://wallpapercave.com/wp/wp5312014.jpg",
+    postImage: "cld-sample-2",
     likes: 45,
     comments: 15,
     shares: 7,
@@ -31,8 +31,7 @@ const mockPosts = [
     id: 3,
     username: "travel_guru",
     profilePic: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/Download-hd-nature-wallpaper-620x388.jpg",
+    postImage: "cld-sample-3",
     likes: 90,
     comments: 40,
     shares: 10,
@@ -42,8 +41,7 @@ const mockPosts = [
     id: 4,
     username: "foodie_fanatic",
     profilePic: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-Nature-Image-620x465.jpeg",
+    postImage: "samples/coffee",
     likes: 120,
     comments: 50,
     shares: 12,
@@ -53,8 +51,7 @@ const mockPosts = [
     id: 5,
     username: "nature_lover",
     profilePic: "https://docs.material-tailwind.com/img/face-2.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/Free-Nature-Picture-Download-620x388.jpg",
+    postImage: "samples/balloons",
     likes: 75,
     comments: 30,
     shares: 8,
@@ -64,8 +61,7 @@ const mockPosts = [
     id: 6,
     username: "tech_savvy",
     profilePic: "https://docs.material-tailwind.com/img/face-1.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/Photos-Images-HD-Nature-Wallpapers-620x349.jpg",
+    postImage: "cld-sample",
     likes: 60,
     comments: 25,
     shares: 6,
@@ -75,8 +71,7 @@ const mockPosts = [
     id: 7,
     username: "artist_at_heart",
     profilePic: "https://docs.material-tailwind.com/img/face-3.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-wallpapers-1080p-widescreen-nature-free-download-620x349.jpg",
+    postImage: "samples/landscapes/beach-boat",
     likes: 85,
     comments: 35,
     shares: 9,
@@ -86,8 +81,7 @@ const mockPosts = [
     id: 8,
     username: "pet_paradise",
     profilePic: "https://docs.material-tailwind.com/img/face-4.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-Backgrounds-Nature-Wallpapers-620x349.jpg",
+    postImage: "samples/sheep",
     likes: 50,
     comments: 22,
     shares: 4,
@@ -97,23 +91,11 @@ const mockPosts = [
     id: 9,
     username: "fitness_freak",
     profilePic: "https://docs.material-tailwind.com/img/face-5.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/Green-Free-Download-HD-Nature-Wallpapers-620x388.jpg",
+    postImage: "sample",
     likes: 100,
     comments: 45,
     shares: 11,
     daysAgo: 7,
-  },
-  {
-    id: 10,
-    username: "fashionista",
-    profilePic: "https://mui.com/static/images/avatar/3.jpg",
-    postImage:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/06/Free-Download-HD-Nature-Wallpapers-Desktop-620x388.jpg",
-    likes: 110,
-    comments: 55,
-    shares: 14,
-    daysAgo: 2,
   },
 ];
 

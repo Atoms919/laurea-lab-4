@@ -12,6 +12,7 @@ export type StackParamList = {
   ProfileScreen: undefined;
   ContactScreen: undefined;
   UserFeedScreen: undefined;
+  NewPostScreen: undefined;
 };
 
 export interface Post {

@@ -24,14 +24,7 @@ const StoriesHeader = () => {
     <View style={styles.container}>
       {mockStories.map((story) => (
         <View style={styles.story} key={story.id}>
-          <View
-            style={{
-              borderRadius: 38,
-              borderWidth: 4,
-              padding: 1,
-              borderColor: "rgba(245, 40, 145, 0.8)",
-            }}
-          >
+          <View style={styles.storyBorder}>
             <Image
               style={styles.storyImage}
               source={{ uri: story.profilePic }}
@@ -56,4 +49,10 @@ const styles = StyleSheet.create({
   },
   story: { justifyContent: "center", alignItems: "center" },
   storyImage: { width: 65, height: 65, borderRadius: 32.5, padding: 10 },
+  storyBorder: {
+    borderRadius: 38,
+    borderWidth: 4,
+    padding: 1,
+    borderColor: "rgba(245, 40, 145, 0.8)",
+  },
 });
