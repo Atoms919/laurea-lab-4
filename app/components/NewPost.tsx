@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import React from "react";
 import { useState, useEffect } from "react";
+import { cld } from "../cloudinary";
+import { upload } from "cloudinary-react-native";
 import * as ImagePicker from "expo-image-picker";
 
 const NewPost = () => {
@@ -23,7 +25,8 @@ const NewPost = () => {
       mediaTypes: ["images"],
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      // reducing image size
+      quality: 0.5,
     });
 
     if (!result.canceled) {
@@ -31,7 +34,33 @@ const NewPost = () => {
     }
   };
 
-  const uploadImage = () => {};
+  const uploadImage = async () => {
+    if (!image) return;
+
+    const options = {
+      upload_preset: "default",
+      unsigned: true,
+    };
+
+    return new Promise(async (resolve, reject) => {
+      await upload(cld, {
+        file: image,
+        options: options,
+        callback: (error: any, response: any) => {
+          if (error || !response) reject(error);
+
+          resolve(response);
+        },
+      });
+
+      setImage(null);
+    });
+  };
+
+  const createPost = async () => {
+    const response: any = await uploadImage();
+    console.log("image id: ", response?.public_id);
+  };
 
   return (
     <View style={styles.container}>
@@ -47,7 +76,7 @@ const NewPost = () => {
         Change Image
       </Text>
 
-      <Pressable style={styles.uploadButton} onPress={uploadImage}>
+      <Pressable style={styles.uploadButton} onPress={createPost}>
         <Text style={styles.uploadButtonText}>Share</Text>
       </Pressable>
     </View>

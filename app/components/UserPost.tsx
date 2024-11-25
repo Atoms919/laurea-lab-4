@@ -9,7 +9,7 @@ import {
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import type { Post } from "../types";
 import React from "react";
-import { AdvancedImage } from "@cloudinary/react";
+import { AdvancedImage } from "cloudinary-react-native";
 import { thumbnail } from "@cloudinary/url-gen/actions/resize";
 import { cld } from "../cloudinary";
 
