@@ -12,6 +12,7 @@ export type StackParamList = {
   ProfileScreen: undefined;
   ContactScreen: undefined;
   UserFeedScreen: undefined;
+  RegisterScreen: undefined;
 };
 
 export interface Post {
@@ -28,6 +29,11 @@ export interface Post {
 export type LoginScreenProps = NativeStackScreenProps<
   StackParamList,
   "LogInScreen"
+>;
+
+export type RegisterScreenProps = NativeStackScreenProps<
+  StackParamList,
+  "RegisterScreen"
 >;
 
 export type WelcomeScreenProps = NativeStackScreenProps<
