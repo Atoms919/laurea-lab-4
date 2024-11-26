@@ -1,6 +1,10 @@
-import { View, Text, TextInput, StyleSheet, Button, Alert } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, Dimensions, Alert } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+
+// Responsive width logic
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const COMPONENT_WIDTH = SCREEN_WIDTH > 500 ? 500 : SCREEN_WIDTH;
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -10,16 +14,15 @@ const RegisterScreen = () => {
 
   const handleRegister = () => {
     if (!username || !password || !confirmPassword) {
-      // Correct Alert usage
-      Alert.alert("Error", "All fields are required.");
+      alert("All fields are required.");
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert("Error", "Passwords do not match.");
+      alert("Passwords do not match.");
       return;
     }
 
-    Alert.alert("Success", "Account created successfully!");
+    alert("Account created successfully!");
     navigation.navigate("WelcomeScreen");
   };
 
@@ -48,7 +51,9 @@ const RegisterScreen = () => {
         placeholder="Confirm password"
         secureTextEntry
       />
-      <Button title="Register" onPress={handleRegister} />
+      <Pressable style={({ pressed }) => [styles.button, pressed && { opacity: 0.8 }]} onPress={handleRegister}>
+        <Text style={styles.buttonText}>Register</Text>
+      </Pressable>
     </View>
   );
 };
@@ -59,16 +64,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 16,
+    alignItems: "center",
+    backgroundColor: "#fff",
+    width: COMPONENT_WIDTH,
+    marginHorizontal: "auto",
   },
   label: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: "bold",
     marginBottom: 8,
+    textAlign: "left",
+    width: "80%",
   },
   input: {
+    width: "80%",
+    borderColor: "grey",
     borderWidth: 1,
     padding: 10,
-    marginBottom: 12,
-    borderRadius: 4,
+    marginVertical: 10,
+    borderRadius: 5,
+    backgroundColor: "#f9f9f9",
+  },
+  button: {
+    backgroundColor: "black",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginTop: 20,
+    width: "80%",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

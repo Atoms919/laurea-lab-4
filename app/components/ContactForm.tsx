@@ -1,5 +1,9 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import { useState } from "react";
+import { View, Text, TextInput, StyleSheet, Pressable, Dimensions } from "react-native";
+import React, { useState } from "react";
+
+// Responsive width logic
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const COMPONENT_WIDTH = SCREEN_WIDTH > 500 ? 500 : SCREEN_WIDTH;
 
 const ContactForm = () => {
   const [message, setMessage] = useState("");
@@ -36,13 +40,7 @@ const ContactForm = () => {
       />
       <Pressable
         onPress={sendMessage}
-        style={({ pressed }) => [
-          styles.button,
-          pressed && { opacity: 0.8 },
-          (phone === "" || message === "" || contactAddress === "") && {
-            backgroundColor: "grey",
-          },
-        ]}
+        style={({ pressed }) => [styles.button, pressed && { opacity: 0.8 }]}
         disabled={phone === "" || message === "" || contactAddress === ""}
       >
         <Text style={styles.buttonText}>Send Message</Text>
@@ -55,17 +53,21 @@ export default ContactForm;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    backgroundColor: "white",
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    width: COMPONENT_WIDTH,
+    marginHorizontal: "auto",
   },
   title: {
-    fontSize: 36,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "black",
+    textAlign: "center",
   },
   input: {
+    width: "80%",
     borderColor: "grey",
     borderWidth: 1,
     padding: 10,
@@ -76,10 +78,12 @@ const styles = StyleSheet.create({
   messageInput: { height: 120, textAlignVertical: "top" },
   button: {
     backgroundColor: "black",
-    padding: 15,
-    alignItems: "center",
-    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
     marginTop: 20,
+    width: "80%",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
