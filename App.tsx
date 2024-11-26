@@ -8,7 +8,6 @@ import RegisterScreen from "./app/screens/RegisterScreen";
 import ProfileScreen from "./app/screens/ProfileScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import UserFeedScreen from "./app/screens/UserFeedScreen";
-import NewPostScreen from "./app/screens/NewPostScreen";
 import type { StackParamList } from "./app/types";
 
 const RootStack = createNativeStackNavigator<StackParamList>({
@@ -20,7 +19,6 @@ const RootStack = createNativeStackNavigator<StackParamList>({
     ProfileScreen: { screen: ProfileScreen, options: { title: "Profile" } },
     ContactScreen: { screen: ContactScreen, options: { title: "Contact us" } },
     UserFeedScreen: { screen: UserFeedScreen, options: { title: "User Feed" } },
-    NewPostScreen: { screen: NewPostScreen, options: { title: "New Post" } },
   },
 });
 

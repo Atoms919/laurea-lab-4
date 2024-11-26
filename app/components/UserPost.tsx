@@ -9,17 +9,12 @@ import {
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import type { Post } from "../types";
 import React from "react";
-import { AdvancedImage } from "cloudinary-react-native";
-import { thumbnail } from "@cloudinary/url-gen/actions/resize";
-import { cld } from "../cloudinary";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
+const COMPONENT_WIDTH = SCREEN_WIDTH > 500 ? 500 : SCREEN_WIDTH;
+
 const UserPost = ({ post }: { post: Post }) => {
-  const image = cld.image(post.postImage);
-
-  image.resize(thumbnail().width(SCREEN_WIDTH).height(350));
-
   return (
     <View style={styles.container}>
       <View style={styles.singlePost}>
@@ -33,7 +28,7 @@ const UserPost = ({ post }: { post: Post }) => {
           <Text style={styles.headerProfileName}>{post.username}</Text>
         </View>
         <View>
-          <AdvancedImage cldImg={image} style={styles.postImage} />
+          <Image source={{ uri: post.postImage }} style={styles.postImage} />
         </View>
         <View style={styles.postBottomPanel}>
           <Pressable onPress={() => alert("Like!")}>
@@ -49,7 +44,9 @@ const UserPost = ({ post }: { post: Post }) => {
             <Text style={styles.bottomPanelText}>{post.shares}</Text>
           </Pressable>
         </View>
-        <Text style={styles.daysText}>{post.daysAgo} days ago</Text>
+        <Text style={styles.daysText}>
+          {post.daysAgo === 0 ? "Today" : `${post.daysAgo} days ago`}
+        </Text>
       </View>
     </View>
   );
@@ -74,7 +71,8 @@ const styles = StyleSheet.create({
   headerProfileName: { fontWeight: "bold" },
   postImage: {
     height: 350,
-    width: SCREEN_WIDTH,
+    width: COMPONENT_WIDTH,
+    objectFit: "cover",
   },
   postBottomPanel: {
     flexDirection: "row",

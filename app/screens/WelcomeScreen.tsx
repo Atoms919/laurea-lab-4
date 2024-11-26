@@ -25,9 +25,6 @@ const WelcomeScreen = () => {
       <Button onPress={() => navigation.navigate("UserFeedScreen")}>
         To User Feed
       </Button>
-      <Button onPress={() => navigation.navigate("NewPostScreen")}>
-        To New Post
-      </Button>
     </View>
   );
 };
