@@ -39,5 +39,10 @@ const styles = StyleSheet.create({
   },
   image: { width: 80, height: 80, borderRadius: 40 },
   userInfoCount: { textAlign: "center", fontWeight: "bold", fontSize: 16 },
-  userInfo: { flexDirection: "row", gap: 60 },
+  userInfo: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    flex: 1,
+    marginLeft: 20,
+  },
 });

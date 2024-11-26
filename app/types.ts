@@ -14,6 +14,17 @@ export type StackParamList = {
   UserFeedScreen: undefined;
 };
 
+export interface Post {
+  id: number;
+  username: string;
+  profilePic: string;
+  postImage: string;
+  likes: number;
+  comments: number;
+  shares: number;
+  daysAgo: number;
+}
+
 export type LoginScreenProps = NativeStackScreenProps<
   StackParamList,
   "LogInScreen"
