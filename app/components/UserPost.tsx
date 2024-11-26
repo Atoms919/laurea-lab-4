@@ -1,11 +1,25 @@
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Pressable,
+} from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import type { Post } from "../types";
 import React from "react";
+import { AdvancedImage } from "cloudinary-react-native";
+import { thumbnail } from "@cloudinary/url-gen/actions/resize";
+import { cld } from "../cloudinary";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const UserPost = ({ post }: { post: Post }) => {
+  const image = cld.image(post.postImage);
+
+  image.resize(thumbnail().width(SCREEN_WIDTH).height(350));
+
   return (
     <View style={styles.container}>
       <View style={styles.singlePost}>
@@ -19,21 +33,21 @@ const UserPost = ({ post }: { post: Post }) => {
           <Text style={styles.headerProfileName}>{post.username}</Text>
         </View>
         <View>
-          <Image style={styles.postImage} source={{ uri: post.postImage }} />
+          <AdvancedImage cldImg={image} style={styles.postImage} />
         </View>
         <View style={styles.postBottomPanel}>
-          <View>
+          <Pressable onPress={() => alert("Like!")}>
             <FontAwesome name="heart-o" size={24} color="black" />
             <Text style={styles.bottomPanelText}>{post.likes}</Text>
-          </View>
-          <View>
+          </Pressable>
+          <Pressable onPress={() => alert("Comment!")}>
             <FontAwesome name="comment-o" size={24} color="black" />
             <Text style={styles.bottomPanelText}>{post.comments}</Text>
-          </View>
-          <View>
+          </Pressable>
+          <Pressable onPress={() => alert("Share!")}>
             <FontAwesome name="share" size={24} color="black" />
             <Text style={styles.bottomPanelText}>{post.shares}</Text>
-          </View>
+          </Pressable>
         </View>
         <Text style={styles.daysText}>{post.daysAgo} days ago</Text>
       </View>

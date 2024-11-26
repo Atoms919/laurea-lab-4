@@ -7,14 +7,6 @@ import { useEffect } from "react";
 const WelcomeScreen = () => {
   const navigation = useNavigation();
 
-  //   useEffect(() => {
-  //     const timer = setTimeout(() => {
-  //       navigation.dispatch(StackActions.replace("LogInScreen"));
-  //     }, 1000 * 300);
-
-  //     return () => clearTimeout(timer);
-  //   }, [navigation]);
-
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeText}>Welcome to Glimpse!</Text>
@@ -32,6 +24,9 @@ const WelcomeScreen = () => {
       </Button>
       <Button onPress={() => navigation.navigate("UserFeedScreen")}>
         To User Feed
+      </Button>
+      <Button onPress={() => navigation.navigate("NewPostScreen")}>
+        To New Post
       </Button>
     </View>
   );
