@@ -13,7 +13,7 @@ import type { StackParamList } from "./app/types";
 const RootStack = createNativeStackNavigator<StackParamList>({
   initialRouteName: "WelcomeScreen",
   screens: {
-    WelcomeScreen: { screen: WelcomeScreen, options: { title: "Welcome" } },
+    WelcomeScreen: { screen: WelcomeScreen, options: { headerShown: false} },
     LogInScreen: { screen: LogInScreen, options: { title: "Login Page" } },
     RegisterScreen: { screen: RegisterScreen, options: { title: "Register Page"}},
     ProfileScreen: { screen: ProfileScreen, options: { title: "Profile" } },

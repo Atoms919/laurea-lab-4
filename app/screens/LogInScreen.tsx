@@ -1,32 +1,67 @@
-import { View, Text, TextInput, StyleSheet, Pressable, Dimensions } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable, Dimensions, Alert } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../firebase"; // Firebase imports
+import { query, where, getDocs, collection } from "firebase/firestore"; // Firestore query functions
 
 // Responsive width logic
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const COMPONENT_WIDTH = SCREEN_WIDTH > 500 ? 500 : SCREEN_WIDTH;
 
-const LogInScreen = () => {
+const LoginScreen = () => {
   const navigation = useNavigation();
-  const [username, setUsername] = useState("");
+  const [emailOrUsername, setEmailOrUsername] = useState(""); // This field will handle both email and username
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    if (username === "user" && password === "pass") {
-      navigation.navigate("WelcomeScreen");
-    } else {
-      alert("Invalid credentials");
+  const handleLogin = async () => {
+    if (!emailOrUsername || !password) {
+      alert("Please fill out both fields.");
+      return;
+    }
+
+    try {
+      let userEmail = "";
+
+      // Check if the input is an email or a username
+      if (emailOrUsername.includes("@")) {
+        // It's an email, proceed with login using email directly
+        userEmail = emailOrUsername;
+      } else {
+        // It's a username, search Firestore for the email associated with this username
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("username", "==", emailOrUsername));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          alert("Username not found.");
+          return;
+        }
+
+        // Get the email from the Firestore document
+        const userDoc = querySnapshot.docs[0];
+        userEmail = userDoc.data().email;
+      }
+
+      // Now use the found email to sign in
+      await signInWithEmailAndPassword(auth, userEmail, password);
+
+      alert("Login successful!");
+      navigation.navigate("WelcomeScreen"); // Navigate to another screen after successful login
+    } catch (error: any) {
+      alert("Error logging in: " + error.message); // Show error message if login fails
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Username</Text>
+      <Text style={styles.label}>Email or Username</Text>
       <TextInput
         style={styles.input}
-        value={username}
-        onChangeText={setUsername}
-        placeholder="Enter username"
+        value={emailOrUsername}
+        onChangeText={setEmailOrUsername}
+        placeholder="Enter email or username"
+        autoCapitalize="none"
       />
       <Text style={styles.label}>Password</Text>
       <TextInput
@@ -36,14 +71,17 @@ const LogInScreen = () => {
         placeholder="Enter password"
         secureTextEntry
       />
-      <Pressable style={({ pressed }) => [styles.button, pressed && { opacity: 0.8 }]} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <Pressable
+        style={({ pressed }) => [styles.button, pressed && { opacity: 0.8 }]}
+        onPress={handleLogin}
+      >
+        <Text style={styles.buttonText}>Log In</Text>
       </Pressable>
     </View>
   );
 };
 
-export default LogInScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
